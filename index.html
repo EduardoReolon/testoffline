@@ -9,6 +9,7 @@
 
 <body>
   <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+  <textarea name="" id="textareaerror" cols="30" rows="10"></textarea>
 
   <script>
     function getStore() {
@@ -35,6 +36,7 @@
       setStore(store);
       console.log(store);
     }, (error) => {
+      document.getElementById('textareaerror').value = error;
       console.log('error: ', error);
     },{timeout:10000});
     console.log('script executado')
