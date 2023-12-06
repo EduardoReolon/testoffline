@@ -29,7 +29,7 @@
     const obj = {};
     store.arrayTest.push(obj);
     obj.time = new Date();
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.watchPosition((position) => {
       obj.latitude = position.coords.latitude;
       obj.longitude = position.coords.longitude;
       document.getElementById('textarea').value = JSON.stringify(store.arrayTest);
