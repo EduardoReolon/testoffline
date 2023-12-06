@@ -36,7 +36,7 @@
       setStore(store);
       console.log(store);
     }, (error) => {
-      document.getElementById('textareaerror').value = error;
+      document.getElementById('textareaerror').value = JSON.stringify(error);
       console.log('error: ', error);
     },{timeout:10000});
     console.log('script executado')
