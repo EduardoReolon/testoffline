@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <textarea name="" id="textarea" cols="30" rows="10"></textarea>
+
+  <script>
+    function getStore() {
+      const store = JSON.parse(localStorage.getItem('cohapar') || '{}');
+      if (!store.authentication) store.authentication = {};
+
+      return store;
+    }
+
+    function setStore(store){
+      localStorage.setItem('cohapar', JSON.stringify(store));
+    }
+
+    const store = getStore();
+    if (!store.arrayTest) store.arrayTest = [];
+
+    const obj = {};
+    store.arrayTest.push(obj);
+    obj.time = new Date();
+    navigator.geolocation.getCurrentPosition((position) => {
+      obj.latitude = position.coords.latitude;
+      obj.longitude = position.coords.longitude;
+      document.getElementById('textarea').value = JSON.stringify(store.arrayTest);
+      setStore(store);
+      console.log(store);
+    }, (error) => {
+      console.log('error: ', error);
+    },{timeout:10000});
+    console.log('script executado')
+  </script>
+</body>
+
+</html>
